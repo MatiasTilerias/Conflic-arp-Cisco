@@ -18,4 +18,11 @@ this is a simple python project that you can use to check your network and troub
 
 ```sh
 python ./main.py -i 192.168.1.1 -u cisco -p ciscopass -x Router
+
+ip : 192.168.1.1: mac : c401.0ad4.0000
+ip : 192.168.1.2: mac : 0200.4c4f.4f50
+ip : 172.20.10.11: mac : 7c25.da5e.d8cc
+IP Duplicated : []
 ```
+
+Also you can Download the Last relase for Windows 0x86_64 [here](https://github.com/MatiasTilerias/Conflic-arp-Cisco/releases/download/0.1/Conflict-Ip.exe)
