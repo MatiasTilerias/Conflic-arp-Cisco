@@ -25,4 +25,4 @@ ip : 172.20.10.11: mac : 7c25.da5e.d8cc
 IP Duplicated : []
 ```
 
-Also you can Download the Last relase for Windows 0x86_64 [here](https://github.com/MatiasTilerias/Conflic-arp-Cisco/releases/download/0.2/Conflict-Ip0.2.exe)
+Also you can Download the Last relase for Windows 0x86_64 [here](https://github.com/MatiasTilerias/Conflic-arp-Cisco/releases/download/0.2/Conflict-Ip0.3.exe)
