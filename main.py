@@ -11,51 +11,52 @@ parser.add_argument('--hostname','-x', help='Hostname of the Router')
 args = parser.parse_args()
 ###############################################
 ########Telnet Conection######################
-HOST = "192.168.1.1"
-user = "ifysec"
-password = "SPeedy_1282"
+HOST = args.ip
+user = args.username
+password = args.password
 tn = telnetlib.Telnet(HOST)
-#tn.read_until(b"Username: ")
-
+tn.read_until(b"Username: ")
 tn.write(user.encode('ascii') + b"\n")
 if password:
     tn.read_until(b"Password: ")
     tn.write(password.encode('ascii') + b"\n")    
-tn.read_until(bytes("R1#", encoding="ascii"))
+tn.read_until(bytes(args.hostname + "#", encoding="ascii"))
 tn.write(b"terminal length 0\n")
 tn.write(b"sh arp\n")
 tn.write(b"exit\n")
-test = tn.read_all().decode('ascii')
-print(test)
 
-#arp = tn.read_all().decode('ascii')
+arp = tn.read_all().decode('ascii')
 
 ####################Scrapying arp table#################
-#arp = arp.split()
+arp = arp.split()
 
-#for i in range (11):
-#    arp.pop(0)
-#arp.pop(-1)
-#while "Internet" in arp:
-#    arp.remove("Internet")
-#while "ARPA" in arp:
-#    arp.remove("ARPA")
+for i in range (14):
+    arp.pop(0)
+arp.pop(-1)
+while "Internet" in arp:
+    arp.remove("Internet")
+while "ARPA" in arp:
+    arp.remove("ARPA")
 
-#arpTable = {}
+arpTable = {}
 
-#for i in range (len(arp)):
-#    if i == 0 or i % 4 == 0:
-#        print ("ip : " + arp[i] + ": mac : " + arp[i+2])
-#        arpTable[arp[i + 2]] = arp[i]
+for i in range (len(arp)):
+    if i == 0 or i % 4 == 0:
+        try:
+            arp[i+2]
+            print ("ip : " + arp[i] + ": mac : " + arp[i+2])
+            arpTable[arp[i + 2]] = arp[i]
+        except:
+            print(arp[i])
 ############looking for repeted ips#############
 
-#rev_arp ={}
+rev_arp ={}
 
-#for key, value in arpTable.items():
-#    rev_arp.setdefault(value, set()).add(key)
+for key, value in arpTable.items():
+    rev_arp.setdefault(value, set()).add(key)
 
-#result = [key for key, values in rev_arp.items() if len(values) > 1]
-#print("IP Duplicated : " + str(result))
+result = [key for key, values in rev_arp.items() if len(values) > 1]
+print("IP Duplicated : " + str(result))
 #print(arpTable)
 
 
