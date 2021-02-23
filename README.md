@@ -3,7 +3,7 @@
 
 this is a simple python project that you can use to check your network and troubleshoot posibles ip conflicts
 
-- it works over telnet (ssh soon)
+- it works over telnet (ssh/resconf soon)
 - Clen report
 
 
